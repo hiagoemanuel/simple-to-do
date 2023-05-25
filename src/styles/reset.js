@@ -6,4 +6,13 @@ export const Reset = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
     }
+
+    html { font-size:62.5%; }
+
+    button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: transparent;
+    }
 `
