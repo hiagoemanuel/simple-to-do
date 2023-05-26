@@ -3,6 +3,7 @@ import { Variables } from "./styles/variables"
 import { GlobalStyle } from "./styles/global-style"
 import styled from "styled-components"
 import { Tab } from "./components/Tab"
+import { ModalToAddTasks } from "./components/ModalToAddTasks"
 
 function App() {
   return (
@@ -10,12 +11,11 @@ function App() {
       <Reset />
       <Variables />
       <GlobalStyle />
-      
+
       <Container>
         <Tab title='Para Fazer' />
-        <Tab title='Fazendo' />
-        <Tab title='Feito' />
       </Container>
+      <ModalToAddTasks />
     </>
   )
 }

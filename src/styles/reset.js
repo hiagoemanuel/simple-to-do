@@ -14,5 +14,13 @@ export const Reset = createGlobalStyle`
         outline: none;
         cursor: pointer;
         background-color: transparent;
+        color: var(--quartenary-color);
+    }
+
+    input {
+        border: none;
+        outline: none;
+        color: var(--quartenary-color);
+        cursor: pointer;
     }
 `
