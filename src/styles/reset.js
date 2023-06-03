@@ -21,6 +21,5 @@ export const Reset = createGlobalStyle`
         border: none;
         outline: none;
         color: var(--quartenary-color);
-        cursor: pointer;
     }
 `

@@ -63,6 +63,7 @@ export const AddTask = styled.input`
     font-size: 1.4rem;
     font-weight: 600;
 
+    cursor: pointer;
     background-color: var(--tertiary-color);
     color: var(--primary-color)
 `

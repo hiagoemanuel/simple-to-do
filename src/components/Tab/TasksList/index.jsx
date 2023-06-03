@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { TaskListContext } from "../../../contexts/tasks-collection"
 
 export const TasksList = () => {
-    const {taskCollection} = useContext(TaskListContext)
+    const { taskCollection } = useContext(TaskListContext)
     return (
         <>
             {
@@ -14,7 +14,10 @@ export const TasksList = () => {
                             <h1>{task.title}</h1>
                             <TaskMenu>
                                 <button>
-                                    <ReactSVG src='src/assets/icons/arrow.svg' />
+                                    <ReactSVG src='/assets/icons/trash.svg' />
+                                </button>
+                                <button>
+                                    <ReactSVG src='/assets/icons/arrow.svg' />
                                 </button>
                                 <input type="checkbox" name="checkbox-task" id="task-completed" />
                             </TaskMenu>

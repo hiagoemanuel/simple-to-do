@@ -14,7 +14,7 @@ export const Tab = ({ title }) => {
             <TasksContainer>
                 <TasksList />
                 <AddTask onClick={openModal}>
-                    <ReactSVG src='src/assets/icons/plus-sign.svg' />
+                    <ReactSVG src='/assets/icons/plus-sign.svg' />
                 </AddTask>
             </TasksContainer>
         </TabStyle>
