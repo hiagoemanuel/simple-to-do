@@ -1,0 +1,9 @@
+:root {
+    --primary-color: #1B2223;
+    --secondary-color: #3A4F50;
+    --tertiary-color: #0EF6CC;
+    --quartenary-color: #F4FEFD;
+
+    --primary-font: 'Bai Jamjuree', sans-serif;
+    /* 400;600;700 */
+}
