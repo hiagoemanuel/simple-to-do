@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const TaskCard = styled.div`
     width: 100%;
+    min-height: 80px;
     padding: 10px;
     border-radius: 5px;
 
@@ -21,15 +22,21 @@ export const TaskTitle = styled.div`
         font-size: 21px;
         font-weight: 600;
     }
+
+    .t-dots { display: none; }
+    svg { cursor: pointer; }
 `
 
-export const TaskMenu = styled.ul`
+export const TaskMenu = styled.div`
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: 15px;
 
-    svg { cursor: pointer; }
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 `
 
 export const CheckBoxToDo = styled.div`
