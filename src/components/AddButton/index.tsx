@@ -1,14 +1,14 @@
 import { Button, Container, PlusButton } from "./style"
 
-export const AddButton = () => {
-    const addTask = (): void => {
-        console.log('hi');
-    }
+interface Props {
+    openModal?: React.Dispatch<React.SetStateAction<boolean>>
+}
 
+export const AddButton = (props: Props) => {
     return (
         <Container>
             <Button
-                onClick={addTask}
+                onClick={() => props.openModal ? props.openModal(true) : ''}
                 type="button"
                 aria-labelledby="labeldiv">
                 <PlusButton>

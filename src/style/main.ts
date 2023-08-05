@@ -5,6 +5,7 @@ export const MainContainer = styled.main`
     height: 100vh;
     padding: 40px;
 
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(auto, 390px));
     grid-auto-rows: min-content;

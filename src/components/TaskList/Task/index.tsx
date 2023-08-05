@@ -9,8 +9,6 @@ import { Responsive } from './responsive'
 
 export const Task = () => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
-    
-    const handlleMenu = (): void => setMenuIsOpen(menu => !menu)
 
     return (
         <TaskCard>
@@ -22,7 +20,7 @@ export const Task = () => {
                         <li><TrashSVG /></li>
                         <li><ArrowSVG /></li>
                     </ul>
-                    <ThreeDotsSVG className='t-dots' onClick={handlleMenu} />
+                    <ThreeDotsSVG className='t-dots' onClick={(): void => setMenuIsOpen(menu => !menu)} />
                     <CheckBoxToDo>
                         <input id="to-to-check" type="checkbox" title='checkbox' />
                         <label htmlFor="to-to-check">
