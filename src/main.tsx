@@ -5,8 +5,9 @@ import App from './App.tsx'
 import './style/reset.css'
 import './style/variables.css'
 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>,
 )

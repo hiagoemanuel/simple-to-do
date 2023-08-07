@@ -1,12 +1,13 @@
-import { styled } from "styled-components";
+import styled from 'styled-components'
 
 export const ModalSection = styled.section<{ $isOpen: boolean }>`
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 20;
-    overflow: hidden;
 
     display: ${props => props.$isOpen ? 'flex' : 'none'};
     justify-content: center;
@@ -62,7 +63,7 @@ export const CloseButton = styled.div`
     }
 `
 
-export const ModalInput = styled.div`
+export const ModalInput = styled.form`
     input[type='text'] {
         width: 100%;
         padding: 5px;

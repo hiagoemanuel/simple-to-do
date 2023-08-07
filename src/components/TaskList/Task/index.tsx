@@ -7,14 +7,20 @@ import { ReactComponent as ArrowSVG } from '../../../assets/arrow.svg'
 import { CheckBoxToDo, TaskCard, TaskDiscription, TaskMenu, TaskTitle } from "./style"
 import { Responsive } from './responsive'
 
-export const Task = () => {
+interface Props {
+    title: string;
+    discription?: string;
+    id: string
+}
+
+export const Task = (props: Props) => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
     return (
         <TaskCard>
             <Responsive $menuIsOpen={menuIsOpen} />
             <TaskTitle>
-                <h1>Task to do</h1>
+                <h1>{props.title}</h1>
                 <TaskMenu>
                     <ul>
                         <li><TrashSVG /></li>
@@ -22,14 +28,14 @@ export const Task = () => {
                     </ul>
                     <ThreeDotsSVG className='t-dots' onClick={(): void => setMenuIsOpen(menu => !menu)} />
                     <CheckBoxToDo>
-                        <input id="to-to-check" type="checkbox" title='checkbox' />
-                        <label htmlFor="to-to-check">
+                        <input id={props.id} type="checkbox" title='checkbox' />
+                        <label htmlFor={props.id}>
                             <span></span><span></span>
                         </label>
                     </CheckBoxToDo>
                 </TaskMenu>
             </TaskTitle>
-            <TaskDiscription>This is the discription of my task</TaskDiscription>
+            <TaskDiscription>{props.discription}</TaskDiscription>
         </TaskCard>
     )
 }

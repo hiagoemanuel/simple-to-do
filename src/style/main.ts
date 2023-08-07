@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.main`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     padding: 40px;
 
     position: relative;
