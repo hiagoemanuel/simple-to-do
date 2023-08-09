@@ -6,6 +6,7 @@ export const ListContainer = styled.div`
     border-radius: 10px;
 
     background-color: var(--secondary-color);
+    box-shadow: 10px 10px 4px #00000045;
 `
 
 export const ListTitle = styled.h1`

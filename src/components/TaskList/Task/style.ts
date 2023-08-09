@@ -30,11 +30,31 @@ export const TaskMenu = styled.div`
     position: relative;
     display: flex;
     gap: 15px;
+`
 
-    ul {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+export const MenuList = styled.ul`
+    display: flex;
+    align-items: center;
+    gap: 15px;
+`
+
+export const HamburgerButton = styled.div<{ $isOpen: boolean }>`
+    @media (max-width : 470px) {
+        ul { display: none; }
+        
+        ${props => props.$isOpen ? 'ul' : '' } {
+            padding: 5px;
+            border-radius: 4px;
+
+            display: flex !important;
+            z-index: 10;
+
+            position: absolute;
+            top: 27px;
+            left: -25px;
+
+            background-color: var(--secondary-color);
+        }
     }
 `
 

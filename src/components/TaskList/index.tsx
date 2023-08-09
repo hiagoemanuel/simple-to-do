@@ -10,16 +10,20 @@ interface Props {
     title: string;
 }
 
-interface Task {
+export interface Task {
     title: string;
-    discription?: string
+    discription?: string;
+    id: string;
 }
+
+const randomId = (title: string): string => title.replace('', ' ') + Math.random().toString()
 
 export const TaskList = (props: Props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [arrayTask, setArrayTask] = useState<Task[]>([{
         title: 'First Task',
-        discription: 'First discription'
+        discription: 'First discription',
+        id: randomId('First Task'),
     }])
 
     const setTask = (event: BaseSyntheticEvent) => {
@@ -29,7 +33,8 @@ export const TaskList = (props: Props) => {
         if (inputName.trim()) {
             setArrayTask([...arrayTask, {
                 title: inputName,
-                discription: inputDescription
+                discription: inputDescription,
+                id: randomId(inputName)
             }])
 
             event.target[0].value = ''
@@ -40,6 +45,11 @@ export const TaskList = (props: Props) => {
         }
     }
 
+    const deleteTaskFromArrayTask = (idTask: string) => {
+        const newArray = arrayTask.filter(item => item.id !== idTask)
+        setArrayTask(newArray)
+    }
+
     return (
         <ListContainer>
             <ListTitle>{props.title}</ListTitle>
@@ -48,7 +58,8 @@ export const TaskList = (props: Props) => {
                     arrayTask.map((task, index) => <Task
                         title={task.title}
                         discription={task.discription}
-                        id={Math.random().toString()}
+                        id={task.id}
+                        deleteTask={deleteTaskFromArrayTask}
                         key={index}
                     />)
                 }
