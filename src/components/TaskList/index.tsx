@@ -12,26 +12,31 @@ interface Props {
 
 interface Task {
     title: string;
-    discription: string
+    discription?: string
 }
 
 export const TaskList = (props: Props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [arrayTask, setArrayTask] = useState<Task[]>([])
+    const [arrayTask, setArrayTask] = useState<Task[]>([{
+        title: 'First Task',
+        discription: 'First discription'
+    }])
 
     const setTask = (event: BaseSyntheticEvent) => {
         const inputName: string = event.target[0].value
         const inputDescription: string = event.target[1].value
 
         if (inputName.trim()) {
-            setArrayTask([{
+            setArrayTask([...arrayTask, {
                 title: inputName,
                 discription: inputDescription
-            }, ...arrayTask])
-            
+            }])
+
             event.target[0].value = ''
             event.target[1].value = ''
             setModalIsOpen(false)
+        } else {
+            alert('Insira o nome da tarefa')
         }
     }
 
@@ -49,7 +54,7 @@ export const TaskList = (props: Props) => {
                 }
             </TasksContainer>
             <AddButton openModal={setModalIsOpen} />
-            <ModalForm isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setTask(event)}>
+            <ModalForm title={'Criar Tarefa'} isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setTask(event)}>
                 <input type="text" placeholder="Nome *" />
                 <input type="text" placeholder="Descrição" />
                 <input type="submit" value="Criar" />

@@ -4,6 +4,7 @@ import { CloseButton, ModalContainer, ModalHeader, ModalInputs, ModalSection } f
 
 interface Props {
     children: ReactNode;
+    title: string;
     isOpen: boolean;
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
     action: (event: BaseSyntheticEvent) => void;
@@ -17,7 +18,7 @@ export const ModalForm = (props: Props) => {
         }} >
             <ModalContainer>
                 <ModalHeader>
-                    <h1>Criar Tarefa</h1>
+                    <h1>{props.title}</h1>
                     <CloseButton onClick={() => props.closeModal(false)}>
                         <span></span><span></span>
                     </CloseButton>

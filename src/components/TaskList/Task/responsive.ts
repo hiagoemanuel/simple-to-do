@@ -4,6 +4,7 @@ import { TaskMenu } from "./style";
 export const Responsive = createGlobalStyle<{ $menuIsOpen: boolean }>`
     @media (max-width: 470px) {
         .t-dots { display: block !important; }
+        
         ${TaskMenu} {
             gap: 10px;
             ul { display: none; }

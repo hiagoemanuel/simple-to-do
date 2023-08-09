@@ -10,13 +10,16 @@ interface TaskList { name: string }
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-  const [arrayTaskList, setArrayTaskList] = useState<TaskList[]>([{ name: 'Para Fazer' }])
+  const [arrayTaskList, setArrayTaskList] = useState<TaskList[]>([
+    { name: 'Para Fazer' },
+    { name: 'Fazendo' }
+  ])
 
   const setTaskList = (event: BaseSyntheticEvent) => {
     const inputValue: string = event.target[0].value
 
     if (inputValue.trim()) {
-      setArrayTaskList([{ name: inputValue }, ...arrayTaskList])
+      setArrayTaskList([...arrayTaskList, { name: inputValue }])
       event.target[0].value = ''
       setModalIsOpen(false)
     } else {
@@ -32,7 +35,7 @@ function App() {
         ))
       }
       <AddButton openModal={setModalIsOpen} />
-      <ModalForm isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setTaskList(event)} >
+      <ModalForm title={'Criar Lista'} isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setTaskList(event)} >
         <input type="text" name="ListName" placeholder="Insira o nome *" />
         <input type="submit" value="Criar" />
       </ModalForm>

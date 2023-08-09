@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const ListContainer = styled.div`
     max-width: 390px;
+    height: fit-content;
     border-radius: 10px;
 
     background-color: var(--secondary-color);

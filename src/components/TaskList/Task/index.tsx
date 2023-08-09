@@ -26,7 +26,7 @@ export const Task = (props: Props) => {
                         <li><TrashSVG /></li>
                         <li><ArrowSVG /></li>
                     </ul>
-                    <ThreeDotsSVG className='t-dots' onClick={(): void => setMenuIsOpen(menu => !menu)} />
+                    <ThreeDotsSVG className='t-dots' onClick={() => setMenuIsOpen(menu => !menu)} />
                     <CheckBoxToDo>
                         <input id={props.id} type="checkbox" title='checkbox' />
                         <label htmlFor={props.id}>
@@ -35,7 +35,7 @@ export const Task = (props: Props) => {
                     </CheckBoxToDo>
                 </TaskMenu>
             </TaskTitle>
-            <TaskDiscription>{props.discription}</TaskDiscription>
+            {props.discription ? <TaskDiscription>{props.discription}</TaskDiscription> : ''}
         </TaskCard>
     )
 }
