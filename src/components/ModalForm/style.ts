@@ -76,7 +76,7 @@ export const ModalInputs = styled.form`
         background-color: var(--primary-color);
     }
 
-    input[type='submit'] {
+    input[type='submit'], select {
         padding: 5px 10px;
         border-radius: 5px;
 
@@ -85,6 +85,16 @@ export const ModalInputs = styled.form`
 
         background-color: var(--tertiary-color);
         color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    select {
+        margin-bottom: 10px;
+        
+        display: block;
+        
+        background-color: var(--primary-color);
+        color: var(--quartenary-color);
         cursor: pointer;
     }
 `

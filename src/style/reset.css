@@ -14,7 +14,7 @@ button {
     background-color: transparent;
 }
 
-input {
+input, select {
     outline: none;
     border: none;
 }

@@ -20,10 +20,14 @@ function App() {
     if (inputValue.trim()) {
       setTaskList([...taskList, {
         name: inputValue,
-        setTask: function (newTask) { this.tasks = [...this.tasks, newTask]},
+        setTask: function (newTask) { this.tasks = [...this.tasks, newTask] },
         deleteTask: function (idTask: string) {
           const taskUpdate = this.tasks.filter(item => item.id !== idTask)
           this.tasks = taskUpdate
+        },
+        moveTask: function (task, selectedList) {
+          selectedList.tasks.push(task)
+          this.deleteTask(task.id)
         },
         tasks: []
       }])
