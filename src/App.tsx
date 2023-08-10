@@ -1,4 +1,6 @@
-import { BaseSyntheticEvent, useState } from 'react'
+import { BaseSyntheticEvent, useContext, useState } from 'react'
+
+import { taskListContext } from './contexts/taskListContext'
 
 import { AddButton } from './components/AddButton'
 import { ModalForm } from './components/ModalForm'
@@ -10,16 +12,22 @@ interface TaskList { name: string }
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-  const [arrayTaskList, setArrayTaskList] = useState<TaskList[]>([
-    { name: 'Para Fazer' },
-    { name: 'Fazendo' }
-  ])
+  const { taskList, setTaskList } = useContext(taskListContext)
 
-  const setTaskList = (event: BaseSyntheticEvent) => {
+  const setList = (event: BaseSyntheticEvent) => {
     const inputValue: string = event.target[0].value
 
     if (inputValue.trim()) {
-      setArrayTaskList([...arrayTaskList, { name: inputValue }])
+      setTaskList([...taskList, {
+        name: inputValue,
+        setTask: function (newTask) { this.tasks = [...this.tasks, newTask]},
+        deleteTask: function (idTask: string) {
+          const taskUpdate = this.tasks.filter(item => item.id !== idTask)
+          this.tasks = taskUpdate
+        },
+        tasks: []
+      }])
+
       event.target[0].value = ''
       setModalIsOpen(false)
     } else {
@@ -30,12 +38,12 @@ function App() {
   return (
     <MainContainer>
       {
-        arrayTaskList.map((list, index) => (
-          <TaskList key={index} title={list.name} />
+        taskList.map((list, index) => (
+          <TaskList list={list} key={index} />
         ))
       }
       <AddButton openModal={setModalIsOpen} />
-      <ModalForm title={'Criar Lista'} isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setTaskList(event)} >
+      <ModalForm title={'Criar Lista'} isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setList(event)} >
         <input type="text" name="ListName" placeholder="Insira o nome *" />
         <input type="submit" value="Criar" />
       </ModalForm>
