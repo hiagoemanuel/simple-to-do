@@ -1,7 +1,8 @@
-import { BaseSyntheticEvent, useState } from "react";
+import { BaseSyntheticEvent, useContext, useState } from "react";
 
-import { TaskListType } from "../../contexts/taskListContext";
+import { TaskListType, taskListContext } from "../../contexts/taskListContext";
 
+import { ReactComponent as TrashSVG } from "../../assets/trash.svg";
 import { AddButton } from "../AddButton"
 import { ModalForm } from "../ModalForm";
 import { Task } from "./Task"
@@ -14,6 +15,15 @@ const randomId = (title: string): string => title.replace('', ' ') + Math.random
 
 export const TaskList = ({ list }: Props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [deleteListModalIsOpen, setDeleteListModalIsOpen] = useState(false)
+    const {taskList, setTaskList} = useContext(taskListContext)
+
+    const deleteList = () => {
+        console.log(list)
+        const listUpdate = taskList.filter(item => item.name !== list.name)
+        setTaskList(listUpdate)
+        setDeleteListModalIsOpen(false)
+    }
 
     const setTask = (event: BaseSyntheticEvent) => {
         const inputName: string = event.target[0].value
@@ -37,7 +47,10 @@ export const TaskList = ({ list }: Props) => {
 
     return (
         <ListContainer>
-            <ListTitle>{list.name}</ListTitle>
+            <ListTitle>
+                <h1>{list.name}</h1>
+                <div onClick={() => setDeleteListModalIsOpen(true)}><TrashSVG /></div>
+            </ListTitle>
             <TasksContainer>
                 {
                     list.tasks.map((task, index) => <Task task={task} list={list} key={index} />)
@@ -48,6 +61,15 @@ export const TaskList = ({ list }: Props) => {
                 <input type="text" placeholder="Nome *" />
                 <input type="text" placeholder="Descrição" />
                 <input type="submit" value="Criar" />
+            </ModalForm>
+            <ModalForm
+                title={'Deseja excluir essa lista?'}
+                isOpen={deleteListModalIsOpen}
+                closeModal={setDeleteListModalIsOpen}
+                action={() => { }}
+            >
+                <input type="submit" value="Sim" onClick={() => deleteList()} />
+                <input type="submit" value="Não" onClick={() => setDeleteListModalIsOpen(false)} />
             </ModalForm>
         </ListContainer>
     )

@@ -18,7 +18,7 @@ export const DeleteTaskModal = (props: Props) => {
         <ModalSection $isOpen={props.isOpen}>
             <ModalContainer>
                 <ModalHeader>
-                    <h1>Deseja excluir essa Tarefa?</h1>
+                    <h1>Deseja excluir essa tarefa?</h1>
                     <CloseButton onClick={() => props.closeModal(false)}>
                         <span></span><span></span>
                     </CloseButton>

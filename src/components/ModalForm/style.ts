@@ -79,6 +79,7 @@ export const ModalInputs = styled.form`
     input[type='submit'], select {
         padding: 5px 10px;
         border-radius: 5px;
+        margin-right: 10px;
 
         font-size: 16px;
         font-weight: 600;

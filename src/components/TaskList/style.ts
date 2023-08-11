@@ -9,14 +9,34 @@ export const ListContainer = styled.div`
     box-shadow: 10px 10px 4px #00000045;
 `
 
-export const ListTitle = styled.h1`
+export const ListTitle = styled.div`
+    width: 100%;
     border-radius: 10px 10px 0 0;
-    text-align: center;
+    
+    position: relative;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     background-color: var(--tertiary-color);
-    color: var(--primary-color);
-    font-size: 22px;
-    font-weight: 700;
+    
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    div {
+        position: absolute;
+        right: 10px;
+
+        display: flex;
+        align-items: center;
+        
+        svg > * { fill: var(--primary-color); }
+        cursor: pointer;
+    }
 `
 
 export const TasksContainer = styled.div`
