@@ -16,10 +16,9 @@ const randomId = (title: string): string => title.replace('', ' ') + Math.random
 export const TaskList = ({ list }: Props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [deleteListModalIsOpen, setDeleteListModalIsOpen] = useState(false)
-    const {taskList, setTaskList} = useContext(taskListContext)
+    const { taskList, setTaskList } = useContext(taskListContext)
 
     const deleteList = () => {
-        console.log(list)
         const listUpdate = taskList.filter(item => item.name !== list.name)
         setTaskList(listUpdate)
         setDeleteListModalIsOpen(false)
@@ -43,6 +42,7 @@ export const TaskList = ({ list }: Props) => {
         } else {
             alert('Insira o nome da tarefa')
         }
+        setTaskList([...taskList])
     }
 
     return (

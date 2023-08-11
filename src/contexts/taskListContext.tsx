@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 interface PropsProvider { children: ReactNode }
 
@@ -22,46 +22,13 @@ export type TaskType = {
     status: boolean
 }
 
+interface taskListJSON {
+    name: string;
+    tasks: TaskType[]
+}
+
 const initialValue: TaskListContextType = {
-    taskList: [{
-        name: 'Para Fazer',
-        setTask: function (newTask: TaskType) { this.tasks = [...this.tasks, newTask] },
-        deleteTask: function (idTask: string) {
-            const taskUpdate = this.tasks.filter(item => item.id !== idTask)
-            this.tasks = taskUpdate
-        },
-        moveTask: function (task, selectedList) {
-            selectedList.tasks.push(task)
-            this.deleteTask(task.id)
-        },
-        tasks: [
-            {
-                taskName: 'First Task',
-                discription: 'this is my first task',
-                id: 'FirstTask0.89741985298752',
-                status: false
-            }
-        ]
-    }, {
-        name: 'Fazendo',
-        setTask: function (newTask: TaskType) { this.tasks = [...this.tasks, newTask] },
-        deleteTask: function (idTask: string) {
-            const taskUpdate = this.tasks.filter(item => item.id !== idTask)
-            this.tasks = taskUpdate
-        },
-        moveTask: function (task, selectedList) {
-            selectedList.tasks.push(task)
-            this.deleteTask(task.id)
-        },
-        tasks: [
-            {
-                taskName: 'Second Task',
-                discription: 'this is my second task',
-                id: 'SecondTask0.189904235342352',
-                status: false
-            }
-        ]
-    }],
+    taskList: [],
     setTaskList: () => { }
 }
 
@@ -69,6 +36,30 @@ export const taskListContext = createContext<TaskListContextType>(initialValue)
 
 export const TaskListProvider = ({ children }: PropsProvider) => {
     const [taskList, setTaskList] = useState(initialValue.taskList)
+
+    useEffect(() => {
+        const localValue: taskListJSON[] = JSON.parse(localStorage.getItem('taskList') as string)
+
+        if (localValue) {
+            const valueJSON: TaskListType[] = localValue.map(item => ({
+                name: item.name,
+                setTask: function (newTask: TaskType) { this.tasks = [...this.tasks, newTask] },
+                deleteTask: function (idTask: string) {
+                    const taskUpdate = this.tasks.filter(item => item.id !== idTask)
+                    this.tasks = taskUpdate
+                },
+                moveTask: function (task, selectedList) {
+                    selectedList.tasks.push(task)
+                    this.deleteTask(task.id)
+                },
+                tasks: item.tasks
+            }))
+
+            setTaskList(valueJSON)
+        }
+    }, [])
+
+    useEffect(() => { setTimeout(() => localStorage.setItem('taskList', JSON.stringify(taskList))) }, [taskList])
 
     return (
         <taskListContext.Provider value={{ taskList, setTaskList }}>

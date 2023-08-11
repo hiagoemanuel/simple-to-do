@@ -43,8 +43,11 @@ export const Task = ({ task, list }: Props) => {
                         </MenuList>
                     </HamburgerButton>
                     <CheckBoxToDo>
-                        <input id={task.id} type="checkbox" title='checkbox' />
-                        <label htmlFor={task.id} onClick={() => { task.status = !task.status }}>
+                        <input id={task.id} type="checkbox" title='checkbox' checked={task.status} readOnly />
+                        <label htmlFor={task.id} onClick={() => {
+                            task.status = !task.status
+                            setTaskList([...taskList])
+                        }}>
                             <span></span><span></span>
                         </label>
                     </CheckBoxToDo>

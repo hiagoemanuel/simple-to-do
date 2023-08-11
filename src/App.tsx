@@ -8,8 +8,6 @@ import { TaskList } from './components/TaskList'
 
 import { MainContainer } from './style/main'
 
-interface TaskList { name: string }
-
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   const { taskList, setTaskList } = useContext(taskListContext)
