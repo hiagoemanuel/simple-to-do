@@ -6,7 +6,7 @@ import { AddButton } from './components/AddButton'
 import { ModalForm } from './components/ModalForm'
 import { TaskList } from './components/TaskList'
 
-import { MainContainer } from './style/main'
+import { MainContainer, TaskListContainer, Footer } from './style/main'
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
@@ -39,16 +39,21 @@ function App() {
 
   return (
     <MainContainer>
-      {
-        taskList.map((list, index) => (
-          <TaskList list={list} key={index} />
-        ))
-      }
-      <AddButton openModal={setModalIsOpen} />
+      <TaskListContainer>
+        {
+          taskList.map((list, index) => (
+            <TaskList list={list} key={index} />
+          ))
+        }
+        <AddButton openModal={setModalIsOpen} />
+      </TaskListContainer>
       <ModalForm title={'Criar Lista'} isOpen={modalIsOpen} closeModal={setModalIsOpen} action={(event) => setList(event)} >
         <input type="text" name="ListName" placeholder="Insira o nome *" />
         <input type="submit" value="Criar" />
       </ModalForm>
+      <Footer>
+        <h5>desenvolvido por <a href="/">{'<'}hiago emanuel{'>'}</a></h5>
+      </Footer>
     </MainContainer>
   )
 }

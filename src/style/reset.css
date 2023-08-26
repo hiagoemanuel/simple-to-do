@@ -7,6 +7,12 @@
     color: var(--quartenary-color)
 }
 
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+}
+
 button {
     outline: none;
     border: none;
