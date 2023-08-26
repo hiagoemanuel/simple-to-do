@@ -52,7 +52,7 @@ function App() {
         <input type="submit" value="Criar" />
       </ModalForm>
       <Footer>
-        <h5>desenvolvido por <a href="/">{'<'}hiago emanuel{'>'}</a></h5>
+        <h5>desenvolvido por <a href="https://github.com/hiagoemanuel">{'<'}hiago emanuel{'>'}</a></h5>
       </Footer>
     </MainContainer>
   )
